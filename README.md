@@ -1,70 +1,126 @@
-# Getting Started with Create React App
+# Simple Components
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Simple Components** is a collection of reusable React components created for general use. These components are designed to simplify and speed up development by providing commonly used elements such as input fields and buttons. To use the components, simply copy and paste the code into your project.
 
-## Available Scripts
+## Components
 
-In the project directory, you can run:
+### 1. Input
 
-### `npm start`
+The `Input` component is a customizable input field that supports various sizes, types, masks, and additional features.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Props
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Prop           | Type     | Default     | Description                                                                                       |
+| -------------- | -------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| `id`           | string   | `undefined` | The unique ID for the input element.                                                              |
+| `className`    | string   | `""`        | Additional CSS classes to style the component.                                                    |
+| `name`         | string   | `undefined` | The name of the input field.                                                                      |
+| `label`        | string   | `undefined` | The label displayed above the input field.                                                        |
+| `type`         | string   | `"text"`    | The type of input (`text`, `password`, `email`, `color`, etc.).                                   |
+| `initialValue` | string   | `""`        | The initial value of the input field.                                                             |
+| `onChange`     | function | `undefined` | Callback function triggered when the input value changes.                                         |
+| `size`         | string   | `"md"`      | The size of the input field (`sm`, `md`, `lg`, `xl`).                                             |
+| `mask`         | string   | `undefined` | Mask pattern for input formatting. Supports `a` (letters), `0` (numbers), and `_` (alphanumeric). |
+| `currency`     | string   | `undefined` | Adds currency formatting (e.g., `$`, `€`).                                                        |
+| `underText`    | string   | `undefined` | Additional text displayed below the input field.                                                  |
+| `rounded`      | boolean  | `false`     | Applies full-rounded corners to the input container.                                              |
+| `required`     | boolean  | `false`     | Marks the input as required.                                                                      |
+| `disabled`     | boolean  | `false`     | Disables the input field.                                                                         |
 
-### `npm test`
+#### Example Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```jsx
+<Input
+  id="example"
+  name="example"
+  label="Example Input"
+  type="text"
+  size="lg"
+  underText="This is a helper text."
+  rounded={true}
+  required={true}
+  onChange={(e) => console.log(e.target.value)}
+/>
+```
 
-### `npm run build`
+### 2. Button
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The `Button` component is a versatile button with support for links, click handlers, and customizable styles.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Props
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Prop          | Type      | Default                          | Description                                                   |
+| ------------- | --------- | -------------------------------- | ------------------------------------------------------------- |
+| `children`    | ReactNode | `undefined`                      | The content to display inside the button.                     |
+| `href`        | string    | `undefined`                      | If provided, renders the button as a link with the given URL. |
+| `type`        | string    | `"button"`                       | The HTML button type (`button`, `submit`, `reset`).           |
+| `onClick`     | function  | `undefined`                      | Callback function triggered when the button is clicked.       |
+| `className`   | string    | `""`                             | Additional CSS classes to style the component.                |
+| `transparent` | boolean   | `false`                          | Renders the button with a transparent background.             |
+| `blank`       | boolean   | `false`                          | Opens the link in a new tab if href is provided.              |
+| `textColor`   | string    | `"text-white"`                   | Text color (e.g., "text-black", "text-red-500").              |
+| `color`       | string    | `"bg-blue-600 hover:bg-blue-700` | Background color and hover effects.                           |
+| `text`        | string    | `undefined`                      | Text content of the button if children is not provided.       |
+| `disabled`    | boolean   | `false`                          | Disables the button.                                          |
 
-### `npm run eject`
+### 3. Select
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The `Select` component is a customizable dropdown field that supports various sizes, searchable options, initial values, and additional features like rounded corners and disabled states.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Prop           | Type     | Default     | Description                                                                                    |
+| -------------- | -------- | ----------- | ---------------------------------------------------------------------------------------------- |
+| `id`           | string   | `undefined` | The unique ID for the input element.                                                           |
+| `className`    | string   | `""`        | Additional CSS classes to style the component.                                                 |
+| `name`         | string   | `undefined` | The name of the input field.                                                                   |
+| `label`        | string   | `undefined` | The label displayed above the input field.                                                     |
+| `options`      | array    | `undefined` | Array of options to display in the dropdown. Each option should be an object with id and name. |
+| `onChange`     | function | `undefined` | Callback function triggered when the selected option changes.                                  |
+| `size`         | string   | `"`md"      | The size of the input field (`sm`, `md`, `lg`, `xl`).                                          |
+| `initialValue` | string   | `""`        | The initial value of the input field (matches id of an option).                                |
+| `searchable`   | boolean  | `true`      | Determines whether the input is searchable.                                                    |
+| `showOptionId` | boolean  | `false`     | Displays the option id alongside the name in the dropdown.                                     |
+| `rounded`      | boolean  | `false`     | Applies full-rounded corners to the input container.                                           |
+| `required`     | boolean  | `false`     | Marks the input as required.                                                                   |
+| `disabled`     | boolean  | `false`     | Disables the input field.                                                                      |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Example Usage
+```jsx
+<Select
+  id="example-select"
+  name="example"
+  label="Example Dropdown"
+  options={[
+    { id: "1", name: "Option 1" },
+    { id: "2", name: "Option 2" },
+    { id: "3", name: "Option 3", disabled: true },
+  ]}
+  size="lg"
+  initialValue="2"
+  rounded={true}
+  required={true}
+  searchable={true}
+  showOptionId={true}
+  onChange={(e) => console.log(e.target.value)}
+/>
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## How to Use
 
-## Learn More
+1. Copy the code for the component you want to use.
+2. Paste it into your project.
+3. Customize the props to fit your needs.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Installation of Dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you're using Input or Button components, ensure you have the following installed in your project:
 
-### Code Splitting
+* React
+* Next.js (for link support in Button)
+* Tailwind CSS (for styles)  
+  
+## Contributing  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Feel free to contribute by adding more components or enhancing the existing ones. Open a pull request or create an issue for discussion.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is open source and available under the MIT License.
