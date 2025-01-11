@@ -78,6 +78,7 @@ export default function Input({
 
       if (mask) newValue = formatMask(newValue, mask);
       if (currency) newValue = formatCurrency(newValue);
+      if (type === "color") newValue = formatColor(newValue);
 
       setValue(newValue);
 
@@ -136,6 +137,12 @@ export default function Input({
 
       return currency + numericValue.toFixed(2);
    };
+
+   const formatColor = (value) => {
+      value = value.replace(/[^a-fA-F0-9]/g, '').slice(0, 6);
+
+      return "#" + value;
+   }
 
    return <div
       className={`flex flex-row gap-2 px-2 relative transition-all text-black box-border outline outline-offset-[-1px] hover:outline-2 hover:outline-blue-500 ${rounded ? "rounded-full" : "rounded"} ${sizes.base} ${className} ${isFocused ? "outline-2" : "outline-1"} ${disabled ? "bg-gray-200 border-gray-500 cursor-not-allowed" : "cursor-text bg-white"}`}
