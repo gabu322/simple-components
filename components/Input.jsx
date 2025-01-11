@@ -128,6 +128,8 @@ export default function Input({
 
       let numericValue = parseFloat(value);
 
+      if (numericValue.toString().length === 1) numericValue = numericValue / 100;
+
       const decimalPlaces = (value.split(".")[1] || "").length;
       if (decimalPlaces > 2) {
          numericValue = numericValue * 10;
