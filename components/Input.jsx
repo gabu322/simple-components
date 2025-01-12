@@ -122,19 +122,21 @@ export default function Input({
    };
 
    const formatCurrency = (value) => {
-      value = value.replace(/[^\d.]/g, '');
+      const cleanValue = value
+         .replace(/[^\d.]/g, '')      // Remove invalid characters
+         .replace(/(\..*)\./g, '$1'); // Remove extra dots
 
-      if (isNaN(value) || value == 0) return currency + "0.00";
+      // If the value is not a number or is a single character, return a default value
+      if (isNaN(cleanValue) || String(value).length === 1) {
+         let returnValue = !isNaN(cleanValue) && cleanValue !== '' ? cleanValue : 0;
+         return currency + "0.0" + returnValue;
+      }
 
-      let numericValue = parseFloat(value);
+      let numericValue = parseFloat(cleanValue);
 
-      if (numericValue.toString().length === 1) numericValue = numericValue / 100;
-
-      const decimalPlaces = (value.split(".")[1] || "").length;
-      if (decimalPlaces > 2) {
+      // If the value has more than 2 decimal places, shift the value to the left
+      if ((cleanValue.split(".")[1] || "").length > 2) {
          numericValue = numericValue * 10;
-      } else if (decimalPlaces === 1) {
-         numericValue = numericValue / 10;
       }
 
       return currency + numericValue.toFixed(2);
