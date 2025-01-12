@@ -67,21 +67,21 @@ The `Button` component is a versatile button with support for links, click handl
 
 The `Select` component is a customizable dropdown field that supports various sizes, searchable options, initial values, and additional features like rounded corners and disabled states.
 
-| Prop           | Type     | Default     | Description                                                                                    |
-| -------------- | -------- | ----------- | ---------------------------------------------------------------------------------------------- |
-| `id`           | string   | `undefined` | The unique ID for the input element.                                                           |
-| `className`    | string   | `""`        | Additional CSS classes to style the component.                                                 |
-| `name`         | string   | `undefined` | The name of the input field.                                                                   |
-| `label`        | string   | `undefined` | The label displayed above the input field.                                                     |
-| `options`      | array    | `undefined` | Array of options to display in the dropdown. Each option should be an object with id and name. |
-| `onChange`     | function | `undefined` | Callback function triggered when the selected option changes.                                  |
-| `size`         | string   | `"`md"      | The size of the input field (`sm`, `md`, `lg`, `xl`).                                          |
-| `initialValue` | string   | `""`        | The initial value of the input field (matches id of an option).                                |
-| `searchable`   | boolean  | `true`      | Determines whether the input is searchable.                                                    |
-| `showOptionId` | boolean  | `false`     | Displays the option id alongside the name in the dropdown.                                     |
-| `rounded`      | boolean  | `false`     | Applies full-rounded corners to the input container.                                           |
-| `required`     | boolean  | `false`     | Marks the input as required.                                                                   |
-| `disabled`     | boolean  | `false`     | Disables the input field.                                                                      |
+| Prop           | Type     | Default     | Description                                                                                           |
+| -------------- | -------- | ----------- | ----------------------------------------------------------------------------------------------------- |
+| `id`           | string   | `undefined` | The unique ID for the input element.                                                                  |
+| `className`    | string   | `""`        | Additional CSS classes to style the component.                                                        |
+| `name`         | string   | `undefined` | The name of the input field.                                                                          |
+| `label`        | string   | `undefined` | The label displayed above the input field.                                                            |
+| `options`      | array    | `undefined` | Array of options to display in the dropdown. Each option should be an object with `value` and `text`. |
+| `onChange`     | function | `undefined` | Callback function triggered when the selected option changes.                                         |
+| `size`         | string   | `"md"`      | The size of the input field (`sm`, `md`, `lg`, `xl`).                                                 |
+| `initialValue` | string   | `""`        | The initial value of the input field (matches id of an option).                                       |
+| `searchable`   | boolean  | `true`      | Determines whether the input is searchable.                                                           |
+| `showOptionId` | boolean  | `false`     | Displays the option id alongside the name in the dropdown.                                            |
+| `rounded`      | boolean  | `false`     | Applies full-rounded corners to the input container.                                                  |
+| `required`     | boolean  | `false`     | Marks the input as required.                                                                          |
+| `disabled`     | boolean  | `false`     | Disables the input field.                                                                             |
 
 #### Example Usage
 ```jsx

@@ -47,7 +47,7 @@ export default function Select({
    size = 'md',
    initialValue,
    searchable = true,
-   showOptionId = false,
+   showOptionValue = false,
    rounded,
    required,
    disabled,
@@ -65,8 +65,8 @@ export default function Select({
       if (initialValue == '') {
          handleErase();
       } else if (initialValue) {
-         const selectedOption = options.find((option) => option.id === initialValue);
-         setValue(selectedOption ? selectedOption.name : '');
+         const selectedOption = options.find((option) => option.value === initialValue);
+         setValue(selectedOption ? selectedOption.text : '');
       }
    }, [initialValue]);
 
@@ -75,9 +75,9 @@ export default function Select({
 
       handleInputChange({
          target: {
-            id: option.id || option.text,
+            id: option.value,
             option: true,
-            value: option.name,
+            value: option.text,
          },
       });
 
@@ -143,18 +143,17 @@ export default function Select({
          className={`absolute top-full left-0 w-full bg-white border border-gray-300 max-h-60 overflow-y-auto transition-all z-10 ${rounded ? "rounded-2xl" : "rounded"} ${isFocused ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       >
          {options
-            .filter((option) => option.name.toLowerCase().includes((value || '').toLowerCase()))
-            .map((option) => (
-               <div
-                  key={option.id || option.text}
-                  className={`p-2 transition cursor-pointer ${option.disabled ? 'opacity-60 bg-gray-100' : 'hover:bg-gray-200'
-                     }`}
-                  onClick={() => handleOptionClick(option)}
-               >
-                  {showOptionId && `${option.id} - `}
-                  {option.name}
-               </div>
-            ))}
+            .filter((option) => option.text.toLowerCase().includes((value || '').toLowerCase()))
+            .map((option) => <div
+               key={option.value || option.text}
+               className={`p-2 transition cursor-pointer ${option.disabled ? 'opacity-60 bg-gray-100' : 'hover:bg-gray-200'
+                  }`}
+               onClick={() => handleOptionClick(option)}
+            >
+               {showOptionValue && `${option.value} - `}
+               {option.text}
+            </div>
+            )}
       </div>}
 
       {/* Clear Button */}
