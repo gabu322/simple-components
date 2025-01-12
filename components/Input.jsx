@@ -62,8 +62,10 @@ export default function Input({
          formattedValue = initialValue
             ? formatMask(initialValue, mask)
             : "";
-      } else if (type === "color" && !initialValue) {
-         formattedValue = "#000000";
+      } else if (type === "color") {
+         formattedValue = initialValue
+            ? formatColor(initialValue)
+            : "#000000";
       }
 
       setValue(formattedValue);
@@ -127,16 +129,19 @@ export default function Input({
          .replace(/(\..*)\./g, '$1'); // Remove extra dots
 
       // If the value is not a number or is a single character, return a default value
-      if (isNaN(cleanValue) || String(value).length === 1) {
-         let returnValue = !isNaN(cleanValue) && cleanValue !== '' ? cleanValue : 0;
+      if (isNaN(cleanValue) || String(value).length <= 1) {
+         let returnValue = !isNaN(cleanValue) && cleanValue != '' ? cleanValue : 0;
          return currency + "0.0" + returnValue;
       }
 
       let numericValue = parseFloat(cleanValue);
 
       // If the value has more than 2 decimal places, shift the value to the left
-      if ((cleanValue.split(".")[1] || "").length > 2) {
+      const decimalPlaces = (cleanValue.split(".")[1] || "").length;
+      if (decimalPlaces > 2) {
          numericValue = numericValue * 10;
+      } else if (decimalPlaces == 1) {
+         numericValue = numericValue / 10;
       }
 
       return currency + numericValue.toFixed(2);
